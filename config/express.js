@@ -44,7 +44,7 @@ module.exports = function () {
 
     app.use(flash());
     app.use(passport.initialize());
-    app.use(passport.session());
+    //app.use(passport.session());
 
     require('../app/routes/index.js')(app);
     require('../app/routes/users.js')(app);
