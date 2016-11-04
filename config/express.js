@@ -5,7 +5,8 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     mongoose = require('mongoose'),
-    session = require('express-session-mongo'),
+    session = require('express-session'),
+    MongoDBStore = require('connect-mongodb-session')(session),
     flash = require('connect-flash'),
     bcrypt = require('bcrypt-nodejs'),
     exphbs = require('express3-handlebars'),
@@ -35,6 +36,28 @@ module.exports = function () {
     }));
 
     */
+    var store = new MongoDBStore(
+      {
+        uri: config.db,
+        collection: 'mySessions'
+      });
+    store.on('error', function(error) {
+      assert.ifError(error);
+      assert.ok(false);
+    });
+ 
+    app.use(require('express-session')({
+      secret: config.sessionSecret,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week 
+      },
+      store: store,
+      // Boilerplate options, see: 
+      // * https://www.npmjs.com/package/express-session#resave 
+      // * https://www.npmjs.com/package/express-session#saveuninitialized 
+      resave: true,
+      saveUninitialized: true
+    }));
 
     // view engine setup
     app.set('views', __dirname + '/../app/views');
@@ -44,7 +67,7 @@ module.exports = function () {
 
     app.use(flash());
     app.use(passport.initialize());
-    //app.use(passport.session());
+    app.use(passport.session());
 
     require('../app/routes/index.js')(app);
     require('../app/routes/users.js')(app);
