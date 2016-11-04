@@ -5,7 +5,7 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     mongoose = require('mongoose'),
-    session = require('express-session'),
+    session = require('express-session-mongo'),
     flash = require('connect-flash'),
     bcrypt = require('bcrypt-nodejs'),
     exphbs = require('express3-handlebars'),
@@ -27,11 +27,14 @@ module.exports = function () {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
+    /*
     app.use(session({
         saveUninitialized: true,
         resave: true,
         secret: config.sessionSecret
     }));
+
+    */
 
     // view engine setup
     app.set('views', __dirname + '/../app/views');

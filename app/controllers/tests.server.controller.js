@@ -25,9 +25,11 @@ exports.render = function (req, res) {
 };
 
 exports.renderTest = function (req, res) {
+    /*
     if (req.session.lastVisit) {
         console.log(req.session.lastVisit);
     }
+    */
     
 
    if (req.isAuthenticated()) {

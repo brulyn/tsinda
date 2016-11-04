@@ -16,6 +16,7 @@
     "express": "~4.13.4",
     "express-fileupload": "0.0.5",
     "express-session": "^1.14.1",
+    "express-session-mongo": "^0.1.0",
     "express3-handlebars": "^0.5.2",
     "jade": "~1.11.0",
     "method-override": "^2.3.6",

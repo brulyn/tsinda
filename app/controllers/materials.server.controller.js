@@ -5,9 +5,12 @@ var Materials = require('mongoose').model('Material'),
 var ObjectId = mongoose.Types.ObjectId;
 
 exports.render = function (req, res) {
+    /*
     if (req.session.lastVisit) {
         console.log(req.session.lastVisit);
     }
+
+    */
     if (req.isAuthenticated()) {
         var materials = [];
         var chnks = [];

@@ -2,9 +2,12 @@ var passport = require('passport'),
     users = require('./users.server.controller');
 
 exports.render = function (req, res) {
+    /*
     if (req.session.lastVisit) {
         console.log(req.session.lastVisit);
     }
+
+    */
     if (req.isAuthenticated()) {
         var image_url = "";
         if(req.user.provider === "google"){
