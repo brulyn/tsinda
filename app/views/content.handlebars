@@ -1,0 +1,31 @@
+<div class="col-sm-9 col-md-8">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<b>{{ content.title}}</b>
+		</div>
+		<div class="panel-body">
+			{{{ content.body }}}
+			
+			<!--<form action="#">
+				<button class="btn btn-primary pull-left">Mark as Done</button>
+				
+			</form>-->
+			
+			{{#if show_next}}
+			<form action="/next/{{material_id}}">
+				<button class="btn btn-default btn-xs pull-right">
+					Next<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+				</button>
+			</form>
+			{{/if}}
+
+			{{#if show_back}}
+			<form action="/back/{{material_id}}">
+				<button class="btn btn-default btn-xs pull-right" style="margin-right:10px">
+					<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back	
+				</button>
+			</form>
+			{{/if}}
+		</div>
+	</div>
+</div>

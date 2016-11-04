@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="/images/credit/visa.png" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- fullCalendar 2.2.5-->
+	<!-- Theme style -->
+	<link rel="stylesheet" href="/stylesheets/AdminLTE.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+        folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="/stylesheets/skins/_all-skins.min.css">
+
+	<!-- jQuery 2.2.0 -->
+	<script src="/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="/javascripts/bootstrap.min.js"></script>
+	<!-- Chart -->
+	<script src="/plugins/chartjs/Chart.min.js"></script>
+	<!-- FastClick -->
+	<script src="/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="/javascripts/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/javascripts/demo.js"></script>
+	<!-- PDFOject -->
+	<script src="/javascripts/pdfobject.js"></script>	
+	<title>{{title}}</title>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+	<div class="wrapper">
+		<header class="main-header">
+
+			<!-- Logo -->
+			<a href="#" class="logo">
+				<!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini"><b>T</b><small> p</small></span>
+				<!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><b>Tsinda</b><small>Platform</small></span>
+			</a>
+
+			<!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+					<span class="sr-only"></span>
+				</a>
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+
+						<!-- User Account: style can be found in dropdown.less -->
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="{{ img_url }}" class="user-image" alt="User Image">
+								<span class="hidden-xs">{{user.username}}</span>
+							</a>
+							<ul class="dropdown-menu">
+								<!-- User image -->
+								<li class="user-header">
+									<img src="{{ img_url }}" class="img-circle" alt="User Image">
+
+									<p>
+										{{user.username}}
+										<small>Member since: {{date}}</small>
+									</p>
+								</li>
+								<!-- Menu Body -->
+								<!--<li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+              </li>!-->
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="/update" class="btn btn-default btn-flat">Profile</a>
+									</div>
+									<div class="pull-right">
+										<a href="/signout" class="btn btn-warning btn-flat">Logout</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<!-- Control Sidebar Toggle Button -->
+						<li>
+							<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</header>
+		<aside class="main-sidebar">
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+				<!-- Sidebar user panel -->
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="{{ img_url }}" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>{{user.username}}</p>
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
+				</div>
+				<!-- sidebar menu: : style can be found in sidebar.less -->
+				<ul class="sidebar-menu">
+					<li class="header">MAIN NAVIGATION</li>
+					<li>
+						<a href="/">
+							<i class="fa fa-dashboard"></i> <span>Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a href="/materials">
+							<i class="fa fa-book"></i>
+							<span>My Materials</span>
+							<span class="label label-primary pull-right">4</span>
+						</a>
+					</li>
+					<li>
+						<a href="/tests">
+							<i class="fa fa-pencil-square-o"></i> <span>My Test</span>
+							<small class="label pull-right bg-green">2</small>
+						</a>
+					</li>
+					<li>
+						<a href="/transcripts">
+							<i class="fa fa-file-word-o"></i>
+							<span>Transcripts</span>
+						</a>
+					</li>
+
+				</ul>
+			</section>
+			<!-- /.sidebar -->
+		</aside>
+		<div class="content-wrapper">
+			{{{ body }}}
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<p class="pull-left">&copy; Tsinda Platform</p>
+		</div>
+	</footer>
+</body>
+
+</html>
