@@ -8,13 +8,7 @@ module.exports = function (app) {
         .post(users.signup);
 
     app.route('/signin')
-        .get(users.renderSignin)
-
-        .post(passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/signin',
-            failureFlash: true
-        }));
+        .get(users.renderSignin);
 
     app.route('/update')
         .get(users.renderUpdate)

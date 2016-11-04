@@ -10,11 +10,7 @@ exports.render = function (req, res) {
     */
     if (req.isAuthenticated()) {
         var image_url = "";
-        if(req.user.provider === "google"){
-            
-        }
         res.render(
-
             'index', {
                 title: 'Tsinda Platform',
                 user: req.user,
