@@ -153,8 +153,6 @@ exports.updateMyProfile = function(req, res, next) {
         { section: section},
         { division: req.body.division},
         { year_studies: req.body.year_studies},
-        { $push: {my_materials: my_materials}},
-        {safe: true, upsert: true},
         function(err, model){
             console.log(err);
         }
