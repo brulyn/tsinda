@@ -126,6 +126,7 @@ exports.updateMyProfile = function (req, res, next) {
         user.section = section;
         user.division = req.body.division;
         user.year_studies = req.body.year_studies;
+        user.my_materials = my_materials;
             user.save(function (err) {
                 if (err) {
                     console.log("My Materials   !!!!!!!!!!!!!!!!!!!!!");

@@ -26,13 +26,13 @@ var UserSchema = new Schema({
     division: String,
     year_studies: String,
     section: String,
-    my_materials:{},
-    my_tests: [
-        {
-            test_id: {type: Schema.ObjectId},
-            test_performance: Number
-        }
-    ],
+    my_materials:{
+        type: Schema.ObjectId
+    },
+    my_tests: {    
+        test_id: {type: Schema.ObjectId},
+        test_performance: Number
+    },
     date_of_join: Date,
     year_studies: String,
     salt: {
