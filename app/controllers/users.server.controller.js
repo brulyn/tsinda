@@ -148,12 +148,10 @@ exports.updateMyProfile = function(req, res, next) {
         }
     });
     User.findOneAndUpdate(
-        {"username": req.user.username},
+        { username: req.user.username},
         { $set: {"school": req.body.school}},
-        { $set: {"section": section}},
-        { $set: {"division": req.body.division}},
-        { $set: {"year_studies": req.body.year_studies}},
         function(err, model){
+            if(err)
             console.log(err);
         }
     );
