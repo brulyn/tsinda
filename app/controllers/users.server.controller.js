@@ -140,13 +140,27 @@ exports.myMaterials = function (req, res, next) {
 };*/
 
 exports.updateMyProfile = function(req, res, next) {
-    
+    var section = req.body.division + req.body.year_studies;
+    var my_materials = [];
+    Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
+       for (var i = 0; i < material.length; i++) {
+             my_materials.push(material[i]._id);
+        }
+    });
     User.findOneAndUpdate(
         { username: req.user.username},
-        { $set: {school: req.body.school}},
+        { $set: {
+            school: req.body.school,
+            section: section,
+            division: req.body.division,
+            year_studies: req.body.years_studie  
+            }  
+        },
         function(err, model){
             if(err)
-            console.log(err);
+                console.log(err);
+            else
+                res.redirect('/');
         }
     );
 };
