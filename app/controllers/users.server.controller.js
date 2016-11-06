@@ -119,14 +119,14 @@ exports.updateMyProfile = function (req, res, next) {
         var my_materials = [];
         Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
             for (var i = 0; i < material.length; i++) {
-                user.my_materials.push(material[i]);
+                user.my_materials.push(material[i]._id);
             }
         });
         user.school = req.body.school;
         user.section = section;
         user.division = req.body.division;
         user.year_studies = req.body.year_studies;
-        
+
 
             user.save(function (err) {
                 if (err) {
