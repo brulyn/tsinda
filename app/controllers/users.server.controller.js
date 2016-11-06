@@ -156,12 +156,14 @@ exports.updateMyProfile = function(req, res, next) {
             year_studies: req.body.year_studies  
             } 
         },
-        {$push: {my_materials: my_materials}},
         function(err, model){
             if(err)
                 console.log(err);
             else
-                res.redirect('/');
+                User.my_materials.insert(my_materials, function(err, doc){
+                    res.redirect('/');
+                })
+                
         }
     );
 };
