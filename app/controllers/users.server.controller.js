@@ -113,19 +113,20 @@ exports.myMaterials = function (req, res, next) {
     });
 };
 
-/*exports.updateMyProfile = function (req, res, next) {
+exports.updateMyProfile = function (req, res, next) {
     User.findOne({ username: req.user.username }, function (err, user) {
         var section = req.body.division + req.body.year_studies;
         var my_materials = [];
         Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
             for (var i = 0; i < material.length; i++) {
-                my_materials.push(material[i]._id);
+                user.my_materials.push(material[i]);
             }
         });
         user.school = req.body.school;
         user.section = section;
         user.division = req.body.division;
         user.year_studies = req.body.year_studies;
+        
 
             user.save(function (err) {
                 if (err) {
@@ -137,36 +138,9 @@ exports.myMaterials = function (req, res, next) {
                 }
             });
     });
-};*/
-
-exports.updateMyProfile = function(req, res, next) {
-    var section = req.body.division + req.body.year_studies;
-    var my_materials = [];
-    Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
-       for (var i = 0; i < material.length; i++) {
-             my_materials.push(material[i]._id);
-        }
-    });
-    User.findOneAndUpdate(
-        { username: req.user.username},
-        { $set: {
-            school: req.body.school,
-            section: section,
-            division: req.body.division,
-            year_studies: req.body.year_studies  
-            } 
-        },
-        function(err, model){
-            if(err)
-                console.log(err);
-            else
-                User.my_materials.insert(my_materials, function(err, doc){
-                    res.redirect('/');
-                })
-                
-        }
-    );
 };
+
+
 
 exports.renderUpdate = function (req, res, next) {
     res.render('update', {
