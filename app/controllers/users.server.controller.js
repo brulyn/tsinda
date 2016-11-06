@@ -147,7 +147,7 @@ exports.updateMyProfile = function(req, res, next) {
               my_materials.push(material[i]._id);
         }
     });
-    User.findByIdAndUpdate(
+    User.findOneAndUpdate(
         { username: req.user.username },
         { school: req.body.school},
         { section: section},
