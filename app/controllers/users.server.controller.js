@@ -117,9 +117,9 @@ exports.updateMyProfile = function (req, res, next) {
     User.findOne({ username: req.user.username }, function (err, user) {
         var section = req.body.division + req.body.year_studies;
         var my_materials = [];
-        Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
+        Material.find({ compulsory_for: { $in: ["", section] } },{'title': 1, '_id': 0}, function (err, material) {
             for (var i = 0; i < material.length; i++) {
-                user.my_materials.push(material[i]._id);
+                user.my_materials.push(material[i]);
             }
         });
         user.school = req.body.school;

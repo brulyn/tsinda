@@ -28,7 +28,7 @@ var UserSchema = new Schema({
     section: String,
     my_materials:[
         {
-            title: {type: Schema.ObjectId}
+            title: {type: String}
         }
         
     ],
