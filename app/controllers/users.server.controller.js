@@ -113,7 +113,7 @@ exports.myMaterials = function (req, res, next) {
     });
 };
 
-exports.updateMyProfile = function (req, res, next) {
+/*exports.updateMyProfile = function (req, res, next) {
     User.findOne({ username: req.user.username }, function (err, user) {
         var section = req.body.division + req.body.year_studies;
         var my_materials = [];
@@ -126,7 +126,7 @@ exports.updateMyProfile = function (req, res, next) {
         user.section = section;
         user.division = req.body.division;
         user.year_studies = req.body.year_studies;
-        user.my_materials.push(my_materials)
+
             user.save(function (err) {
                 if (err) {
                     console.log("My Materials   !!!!!!!!!!!!!!!!!!!!!");
@@ -137,6 +137,27 @@ exports.updateMyProfile = function (req, res, next) {
                 }
             });
     });
+};*/
+
+exports.updateMyProfile = function(req, res, next) {
+    var section = req.body.division + req.body.year_studies;
+    var my_materials = [];
+    Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
+        for (var i = 0; i < material.length; i++) {
+              my_materials.push(material[i]._id);
+        }
+    });
+    User.findByIdAndUpdate(
+        { username: req.user.username },
+        { school: req.body.school},
+        { section: section},
+        { division: req.body.division},
+        { year_studies: req.body.year_studies},
+        { $push: {my_materials: my_materials}},
+        function(err, model){
+            console.log(err);
+        }
+    );
 };
 
 exports.renderUpdate = function (req, res, next) {
