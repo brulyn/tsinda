@@ -153,7 +153,7 @@ exports.updateMyProfile = function(req, res, next) {
             school: req.body.school,
             section: section,
             division: req.body.division,
-            year_studies: req.body.years_studies  
+            year_studies: req.body.year_studies  
             } 
         },
         {$push: {my_materials: my_materials}},

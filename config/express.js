@@ -15,7 +15,7 @@ var config = require('./config'),
     
 module.exports = function () {
     var app = express();
-    app.use(favicon(__dirname + '/../public/images/credit/visa.png'));
+    app.use(favicon(__dirname + '/../public/images/t_logo.jpg'));
     if (process.env.NODE_ENV == 'development') {
         app.use(morgan('dev'));
     } else if (process.env.NODE_ENV == 'production') {
