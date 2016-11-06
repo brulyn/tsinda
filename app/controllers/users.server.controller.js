@@ -153,9 +153,10 @@ exports.updateMyProfile = function(req, res, next) {
             school: req.body.school,
             section: section,
             division: req.body.division,
-            year_studies: req.body.years_studie  
-            }  
+            year_studies: req.body.years_studies  
+            } 
         },
+        {$push: {my_materials: my_materials}},
         function(err, model){
             if(err)
                 console.log(err);
