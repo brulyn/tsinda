@@ -154,10 +154,11 @@ exports.updateMyProfile = function (req, res, next) {
             my_materials.push(material[i]);
         }
     });
+    my_materials = JSON.stringify(my_materials);
     User.findOneAndUpdate(
         {username: req.user.username },
         {
-            "$push": {"my_materials": {array : my_materials}}
+            "$push": {"my_materials": { array : my_materials}}
         },
         { upsert:true },
         function(err, affct){
