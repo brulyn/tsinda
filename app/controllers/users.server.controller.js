@@ -155,20 +155,23 @@ exports.updateMyProfile = function (req, res, next) {
             my_materials.push(material[i]);
         }
     });
-    
-    User.findOneAndUpdate(
-        {username: req.user.username },
-        {
-            "$pushAll": {"my_materials": my_materials}
-        },
-        { upsert:true },
-        function(err, affct){
-            if(err){
-                console.log(err)
+    my_materials.forEach(function(material){
+        User.findOneAndUpdate(
+            {username: req.user.username },
+            {
+                "$pushAll": {"my_materials": material}
+            },
+            { upsert:true },
+            function(err, affct){
+                if(err){
+                    console.log(err)
+                }
             }
-            console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
-            res.redirect('/');
-        });
+        );
+    });
+
+    res.redirect('/');
+    
     
 };
 
