@@ -154,26 +154,23 @@ exports.updateMyProfile = function (req, res, next) {
             //user.my_materials.insert(material[i]);
             my_m.push(material[i]);
             st_materials.push(my_m[i].title);
+            
         }
-    });
-
-    for(var i=0; i<my_m.length; i++){
-        st_materials.push(my_m[i].title);
-    }
+        User.findOneAndUpdate(
+                {username: req.user.username },
+                {
+                    $push: {my_materials:{$each: st_materials}}
+                },
+                { upsert:true },
+                function(err, affct){
+                    if(err){
+                        console.log(err);
+                    }
+                    console.log("!!!!!!!!!!!!!!!!!" + st_materials);
+                    res.redirect('/');
+            });
+    });    
     
-    User.findOneAndUpdate(
-        {username: req.user.username },
-        {
-            $push: {my_materials:{$each: st_materials}}
-        },
-        { upsert:true },
-        function(err, affct){
-            if(err){
-                console.log(err);
-            }
-            console.log("!!!!!!!!!!!!!!!!!" + st_materials);
-            res.redirect('/');
-        });
     
 };
 
