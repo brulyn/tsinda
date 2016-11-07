@@ -152,7 +152,7 @@ exports.updateMyProfile = function (req, res, next) {
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
-            my_materials.push(material[i]);
+            my_materials.push(material[i].title);
         }
     });
     var titles = [];
@@ -162,7 +162,7 @@ exports.updateMyProfile = function (req, res, next) {
     User.findOneAndUpdate(
         {username: req.user.username },
         {
-            "$push": {"my_materials": titles}
+            "$push": {"my_materials": my_materials}
         },
         { upsert:true },
         function(err, affct){
