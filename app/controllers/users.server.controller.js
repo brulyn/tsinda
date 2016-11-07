@@ -148,17 +148,18 @@ exports.updateMyProfile1 = function (req, res, next) {
 exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
     var my_materials = [];
+    var st_materials = {};
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
             my_materials.push(material[i]);
         }
     });
-    my_materials = JSON.stringify(my_materials);
+    st_materials = JSON.stringify(my_materials);
     User.findOneAndUpdate(
         {username: req.user.username },
         {
-            "$push": {"my_materials": { array : my_materials}}
+            "$push": {"my_materials": { array : st_materials}}
         },
         { upsert:true },
         function(err, affct){
