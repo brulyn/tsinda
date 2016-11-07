@@ -156,9 +156,9 @@ exports.updateMyProfile = function (req, res, next) {
         }
     });
 
-    my_m.forEach(function(mat){
-        st_materials.push(mat.title);
-    })
+    for(var i=0; i<my_m.length; i++){
+        st_materials.push(my_m[i].title);
+    }
     
     User.findOneAndUpdate(
         {username: req.user.username },
@@ -168,7 +168,7 @@ exports.updateMyProfile = function (req, res, next) {
         { upsert:true },
         function(err, affct){
             if(err){
-                console.log(err)
+                console.log(err);
             }
             console.log("!!!!!!!!!!!!!!!!!" + my_m[0]);
             res.redirect('/');
