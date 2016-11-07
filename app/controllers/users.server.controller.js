@@ -157,7 +157,7 @@ exports.updateMyProfile = function (req, res, next) {
     User.findOneAndUpdate(
         {username: req.user.username },
         {
-            "$push": {my_materials: {my_materials}}
+            "$push": {title: "English"}
         },
         { upsert:true },
         function(err, affct){
