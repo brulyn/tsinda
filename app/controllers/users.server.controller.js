@@ -149,13 +149,16 @@ exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
     var my_materials = [];
     var st_materials = {};
-    Material.find({ compulsory_for: { $in: ["", section] } },{ title: 1, _id: 0}, function (err, material) {
+    Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
             my_materials.push(material[i]);
         }
     });
-    var titles = ["titel1", "title2"];
+    var titles = [];
+    for(var i=0;i<my_materials.length;i++){
+        titles.push(my_materials[i].title);
+    }
     User.findOneAndUpdate(
         {username: req.user.username },
         {
