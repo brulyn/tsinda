@@ -137,7 +137,7 @@ exports.updateMyProfile = function (req, res, next) {
                     console.log("My Materials   !!!!!!!!!!!!!!!!!!!!!");
 
                 } else {
-                    console.log("Sucessfully saved!!!!!!!!!!!!!!!!!!!!!"+ my_materials[0]);
+                    console.log("Sucessfully saved!!!!!!!!!!!!!!!!!!!!!"+ my_materials[0].title);
                     res.redirect('/');
                 }
             });
