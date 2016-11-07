@@ -127,6 +127,9 @@ exports.updateMyProfile = function (req, res, next) {
         user.section = section;
         user.division = req.body.division;
         user.year_studies = req.body.year_studies;
+        for(var i=0; i<my_materials.length; i++){
+            user.my_materials.push(my_materials[i].title);
+        }
 
 
             user.save(function (err) {
