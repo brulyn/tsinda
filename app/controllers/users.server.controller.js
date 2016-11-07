@@ -153,13 +153,13 @@ exports.updateMyProfile = function (req, res, next) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
             my_m.push(material[i]);
-            st_materials.push(my_m[i].title);
+            st_materials.push(my_m[i]._id);
             
         }
         User.findOneAndUpdate(
                 {username: req.user.username },
                 {
-                    $push: {my_materials: { material:{$each: my_m} }}
+                    $push: {my_materials: {$each: st_materials} }
                 },
                 { upsert:true },
                 function(err, affct){
