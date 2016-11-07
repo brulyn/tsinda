@@ -159,14 +159,14 @@ exports.updateMyProfile = function (req, res, next) {
     User.findOneAndUpdate(
         {username: req.user.username },
         {
-            "$pushAll": {"my_materials": {"title": "Yes"}}
+            "$push": {"my_materials": {"title": "Yes"}}
         },
         { upsert:true },
         function(err, affct){
             if(err){
                 console.log(err)
             }
-            console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
             res.redirect('/');
         });
     
