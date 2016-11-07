@@ -156,19 +156,21 @@ exports.updateMyProfile = function (req, res, next) {
         }
     });
     
-    User.findOneAndUpdate(
+    for(var i=0; i<my_materials.length;i++){
+        User.findOneAndUpdate(
         {username: req.user.username },
-        {
-            "$push": {"my_materials": {"title": "Yes"}}
-        },
-        { upsert:true },
-        function(err, affct){
-            if(err){
+            {
+                "$push": {"my_materials": {"title": "Yes"}}
+            },
+            { upsert:true },
+            function(err, affct){
+                if(err){
                 console.log(err)
             }
-            //console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
-            res.redirect('/');
         });
+    }
+    res.redirect('/');
+    
     
 };
 
