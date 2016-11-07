@@ -157,7 +157,7 @@ exports.updateMyProfile = function (req, res, next) {
     });
 
     my_m.forEach(function(mat){
-        st_material.push(mat.title);
+        st_materials.push(mat.title);
     })
     
     User.findOneAndUpdate(
