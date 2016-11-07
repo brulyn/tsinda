@@ -153,6 +153,7 @@ exports.updateMyProfile = function (req, res, next) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
             my_m.push(material[i]);
+            st_materials.push(my_m[i].title);
         }
     });
 
@@ -170,7 +171,7 @@ exports.updateMyProfile = function (req, res, next) {
             if(err){
                 console.log(err);
             }
-            console.log("!!!!!!!!!!!!!!!!!" + my_m[0].title);
+            console.log("!!!!!!!!!!!!!!!!!" + st_materials);
             res.redirect('/');
         });
     
