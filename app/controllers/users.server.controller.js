@@ -113,7 +113,7 @@ exports.myMaterials = function (req, res, next) {
     });
 };
 
-exports.updateMyProfile = function (req, res, next) {
+exports.updateMyProfile1 = function (req, res, next) {
     User.findOne({ username: req.user.username }, function (err, user) {
         var section = req.body.division + req.body.year_studies;
         var my_materials = [];
@@ -143,6 +143,34 @@ exports.updateMyProfile = function (req, res, next) {
                 }
             });
     });
+};
+
+exports.updateMyProfile = function (req, res, next) {
+    var section = req.body.division + req.body.year_studies;
+    var my_materials = [];
+    Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
+        for (var i = 0; i < material.length; i++) {
+            //user.my_materials.insert(material[i]);
+            my_materials.push(material[i]);
+        }
+    });
+    User.findOneAndUpdate(
+        {username: req.user.username }, 
+        {
+            $set: {
+                school: req.body.school,
+                section: section,
+                division: req.body.division,
+                year_studies: req.body.year_studies
+            }, 
+            $push: {my_materials: {my_materials[0].title}}
+        },
+        function(err, done){
+            if(err)
+                console.log(err);
+            res.redirect('/');
+        }
+    
 };
 
 
