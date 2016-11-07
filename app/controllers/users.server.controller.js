@@ -152,7 +152,7 @@ exports.updateMyProfile = function (req, res, next) {
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
-            my_materials.push(material[i]);
+            my_materials[i] = material[i]; 
         }
     });
     
@@ -166,7 +166,8 @@ exports.updateMyProfile = function (req, res, next) {
             if(err){
                 console.log(err)
             }
-            //console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
+            console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials);
+            console.log("@@@@@@@@@@@@@@@@@@@@@" + st_materials);
             res.redirect('/');
         });
     
