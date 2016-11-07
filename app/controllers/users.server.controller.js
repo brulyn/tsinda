@@ -155,18 +155,11 @@ exports.updateMyProfile = function (req, res, next) {
         }
     });
     User.findOneAndUpdate(
-        {username: req.user.username }, 
-        {
-            $set: {
-                school: req.body.school,
-                section: section,
-                division: req.body.division,
-                year_studies: req.body.year_studies
-            }            
-        },
+        {username: req.user.username },
         {
             $push: {my_materials: {my_materials}}
         },
+        { upsert:true },
         function(err, done){
             if(err)
                 console.log(err);
