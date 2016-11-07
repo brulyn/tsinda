@@ -27,7 +27,9 @@ var UserSchema = new Schema({
     year_studies: String,
     section: String,
     my_materials:[
-        title: String
+        {
+            title: String
+        }        
     ],
     my_tests: {    
         test_id: {type: Schema.ObjectId},
