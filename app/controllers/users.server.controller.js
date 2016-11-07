@@ -170,7 +170,7 @@ exports.updateMyProfile = function (req, res, next) {
             if(err){
                 console.log(err);
             }
-            console.log("!!!!!!!!!!!!!!!!!" + st_materials[0]);
+            console.log("!!!!!!!!!!!!!!!!!" + st_materials);
             res.redirect('/');
         });
     
