@@ -147,14 +147,18 @@ exports.updateMyProfile1 = function (req, res, next) {
 
 exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
-    var my_materials = [];
-    var st_materials = ["Yes","No","Ahaaa"];
+    var my_m = [];
+    var st_materials = [];
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
-            my_materials[i] = material[i]; 
+            my_m.push(material[i]);
         }
     });
+
+    my_m.forEach(function(mat){
+        st_material.push(mat.title);
+    })
     
     User.findOneAndUpdate(
         {username: req.user.username },
@@ -166,8 +170,7 @@ exports.updateMyProfile = function (req, res, next) {
             if(err){
                 console.log(err)
             }
-            console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials);
-            console.log("@@@@@@@@@@@@@@@@@@@@@" + st_materials);
+            
             res.redirect('/');
         });
     
