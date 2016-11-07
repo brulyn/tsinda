@@ -119,7 +119,7 @@ exports.updateMyProfile = function (req, res, next) {
         var my_materials = [];
         Material.find({ compulsory_for: { $in: ["", section] } },{'title': 1, '_id': 0}, function (err, material) {
             for (var i = 0; i < material.length; i++) {
-                user.my_materials.insert(material[i]);
+                user.my_materials.push(material[i].title);
             }
         });
         user.school = req.body.school;
