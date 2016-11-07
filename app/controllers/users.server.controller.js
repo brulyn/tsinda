@@ -162,10 +162,11 @@ exports.updateMyProfile = function (req, res, next) {
                 section: section,
                 division: req.body.division,
                 year_studies: req.body.year_studies
-            }, 
-            $push: {my_materials: {my_materials}},            
+            }            
         },
-        { new: true },
+        {
+            $push: {my_materials: {my_materials}}
+        },
         function(err, done){
             if(err)
                 console.log(err);
