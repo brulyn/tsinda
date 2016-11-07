@@ -170,7 +170,7 @@ exports.updateMyProfile = function (req, res, next) {
             if(err){
                 console.log(err)
             }
-            
+            console.log("!!!!!!!!!!!!!!!!!" + my_m[0]);
             res.redirect('/');
         });
     
