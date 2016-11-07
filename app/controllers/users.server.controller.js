@@ -148,7 +148,7 @@ exports.updateMyProfile1 = function (req, res, next) {
 exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
     var my_materials = [];
-    var st_materials = {};
+    var st_materials = ["Yes","No","Ahaaa"];
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
@@ -156,21 +156,19 @@ exports.updateMyProfile = function (req, res, next) {
         }
     });
     
-    for(var i=0; i<my_materials.length;i++){
-        User.findOneAndUpdate(
+    User.findOneAndUpdate(
         {username: req.user.username },
-            {
-                "$push": {"my_materials": {"title": "Yes"}}
-            },
-            { upsert:true },
-            function(err, affct){
-                if(err){
+        {
+            "$push": {"my_materials": {"title": {$each: st_materials}}}
+        },
+        { upsert:true },
+        function(err, affct){
+            if(err){
                 console.log(err)
             }
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!"+ my_materials)
+            res.redirect('/');
         });
-    }
-    res.redirect('/');
-    
     
 };
 
