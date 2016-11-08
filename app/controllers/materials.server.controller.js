@@ -26,6 +26,7 @@ exports.render = function (req, res) {
                     chnks[i].push(materials[j]);
                 }
             }
+            console.log('!!!!!!!!!!!!!!!!! MAterials Array'+ materials );
             res.render(
                 'materials', {
                     title: 'Materials',
