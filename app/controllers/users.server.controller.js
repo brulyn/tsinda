@@ -162,9 +162,8 @@ exports.updateMyProfile = function (req, res, next) {
         }
         User.findOneAndUpdate(
                 {username: req.user.username },
-                {
-                    //$push: {my_materials_ids: {$each: st_materials } },
-                    $pull: {my_materials: { $nin: title_materials}},
+                {  
+                    $set: {my_materials: [null]},
                     $addToSet: {my_materials: {$each: title_materials} },
                     $set: {
                         school: req.body.school,
