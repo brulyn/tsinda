@@ -152,6 +152,7 @@ exports.updateMyProfile = function (req, res, next) {
     var my_m = [];
     var id_materials = [];
     var title_materials = [];  
+
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
@@ -160,10 +161,19 @@ exports.updateMyProfile = function (req, res, next) {
             title_materials.push(my_m[i].title);            
         }
 
+        User.update(
+            {username: req.user.username},
+            {
+                $unset: {my_materials:1}
+            },
+            function(err, d){
+
+            }
+        );
+
         User.findOneAndUpdate(
                 {username: req.user.username },
                 {  
-                    $unset: {my_materials:1},
                     $addToSet: {my_materials: {$each: title_materials} },
                     $set: {
                         school: req.body.school,
@@ -179,10 +189,9 @@ exports.updateMyProfile = function (req, res, next) {
                     }
                     console.log("!!!!!!!!!!!!!!!!!" + id_materials);
                     res.redirect('/');
-            });
-    });    
-    
-    
+            }
+        );
+    });     
 };
 
 
