@@ -15,7 +15,7 @@ exports.render = function (req, res) {
     if (req.isAuthenticated()) {
         var materials = [];
         var chnks = [];
-        User.find({_id: req.user._id},{my_materials:1, _id:0},function (err, mats) {
+        Users.find({_id: req.user._id},{my_materials:1, _id:0},function (err, mats) {
             for (var i = 0; i < mats.length; i++) {
                 materials.push(mats[i]);
             }
