@@ -14,7 +14,7 @@ exports.render = function (req, res) {
     if (req.isAuthenticated()) {
         var materials = [];
         var chnks = [];
-        Materials.find({ title: { $in: [req.user.my_materials] } }, function (err, mats) {
+        Materials.find({ title: { $in: req.user.my_materials } }, function (err, mats) {
             for (var i = 0; i < mats.length; i++) {
                 materials.push(mats[i]);
             }
@@ -26,7 +26,6 @@ exports.render = function (req, res) {
                     chnks[i].push(materials[j]);
                 }
             }
-            console.log('!!!!!!!!!!!!!!!!! MAterials Array'+ materials );
             res.render(
                 'materials', {
                     title: 'Materials',
