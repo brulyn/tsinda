@@ -1,5 +1,6 @@
 var Materials = require('mongoose').model('Material'),
     Contents = require('mongoose').model('Content'),
+    Users = require('mongoose').model('User'),
     Chapters = require('mongoose').model('Chapter'),
     mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
@@ -14,7 +15,7 @@ exports.render = function (req, res) {
     if (req.isAuthenticated()) {
         var materials = [];
         var chnks = [];
-        Materials.find({ compulsory_for: { $in: ["", req.user.section] } }, function (err, mats) {
+        User.find({_id: req.user._id},{my_materials:1, _id:0} function (err, mats) {
             for (var i = 0; i < mats.length; i++) {
                 materials.push(mats[i]);
             }
