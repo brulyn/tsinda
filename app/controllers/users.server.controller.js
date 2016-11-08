@@ -164,7 +164,13 @@ exports.updateMyProfile = function (req, res, next) {
                 {username: req.user.username },
                 {
                     //$push: {my_materials_ids: {$each: st_materials } },
-                    $push: {my_materials: {$each: my_m} } 
+                    $push: {my_materials: {$each: my_m} },
+                    $set: {
+                        school: req.body.school,
+                        division: req.body.division,
+                        year_studies: req.body.year_studies,
+                        section: section
+                    }
                 },
                 { upsert:true },
                 function(err, affct){
