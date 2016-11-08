@@ -164,14 +164,14 @@ exports.updateMyProfile = function (req, res, next) {
                 {username: req.user.username },
                 {
                     //$push: {my_materials_ids: {$each: st_materials } },
-                    $push: {my_materials_ids: {title: {$each: title_materials } } }
+                    $push: {my_materials: {$each: my_m} } 
                 },
                 { upsert:true },
                 function(err, affct){
                     if(err){
                         console.log(err);
                     }
-                    console.log("!!!!!!!!!!!!!!!!!" + st_materials);
+                    console.log("!!!!!!!!!!!!!!!!!" + id_materials);
                     res.redirect('/');
             });
     });    
