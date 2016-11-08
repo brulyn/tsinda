@@ -157,13 +157,13 @@ exports.updateMyProfile = function (req, res, next) {
             //user.my_materials.insert(material[i]);
             my_m.push(material[i]);
             id_materials.push(my_m[i]._id);
-            title_materials.push(my_m[i].title);
-            
+            title_materials.push(my_m[i].title);            
         }
+
         User.findOneAndUpdate(
                 {username: req.user.username },
                 {  
-                    $unset: {my_materials:""},
+                    $set: {my_materials: [null,null,null,null,null,null,null,null]},
                     $addToSet: {my_materials: {$each: title_materials} },
                     $set: {
                         school: req.body.school,
