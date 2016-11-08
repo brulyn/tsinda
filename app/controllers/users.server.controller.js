@@ -1,4 +1,6 @@
 var User = require('mongoose').model('User'),
+    mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
     Material = require('mongoose').model('Material'),
     passport = require('passport');
 var getErrorMessage = function (err) {
@@ -153,7 +155,7 @@ exports.updateMyProfile = function (req, res, next) {
         for (var i = 0; i < material.length; i++) {
             //user.my_materials.insert(material[i]);
             my_m.push(material[i]);
-            st_materials.push(my_m[i]._id);
+            st_materials.push( new Schema.ObjectId(my_m[i]._id));
             
         }
         User.findOneAndUpdate(
