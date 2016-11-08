@@ -164,6 +164,7 @@ exports.updateMyProfile = function (req, res, next) {
                 {username: req.user.username },
                 {
                     //$push: {my_materials_ids: {$each: st_materials } },
+                    $set: {my_materials: undefined},
                     $push: {my_materials: {$each: title_materials} },
                     $set: {
                         school: req.body.school,
