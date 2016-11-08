@@ -164,7 +164,7 @@ exports.updateMyProfile = function (req, res, next) {
                 {username: req.user.username },
                 {
                     //$push: {my_materials_ids: {$each: st_materials } },
-                    
+                    $pull: {my_materials: {}},
                     $addToSet: {my_materials: {$each: title_materials} },
                     $set: {
                         school: req.body.school,
@@ -174,6 +174,7 @@ exports.updateMyProfile = function (req, res, next) {
                     }
                 },
                 { upsert:true },
+                { new:true },
                 function(err, affct){
                     if(err){
                         console.log(err);
