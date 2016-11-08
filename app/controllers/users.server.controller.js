@@ -150,7 +150,7 @@ exports.updateMyProfile1 = function (req, res, next) {
 exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
     var my_m = [];
-    var st_materials = [];
+    var id_materials = [];
     var title_materials = [];  
     Material.find({ compulsory_for: { $in: ["", section] } }, function (err, material) {
         for (var i = 0; i < material.length; i++) {
