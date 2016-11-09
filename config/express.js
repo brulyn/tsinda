@@ -79,6 +79,7 @@ module.exports = function () {
     app.locals.chapters = [];
     app.locals.content_index = 0;
     app.locals.material_id = "";
+    app.locals.number_material = 0;
     
     app.use(express.static(__dirname + '/../public'));
     return app;

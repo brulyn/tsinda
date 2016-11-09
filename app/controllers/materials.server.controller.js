@@ -9,17 +9,19 @@ exports.render = function (req, res) {
     if (req.session.lastVisit) {
         console.log(req.session.lastVisit);
     }
-
     */
     if (req.isAuthenticated()) {
         var materials = [];
         var chnks = [];
+        var number_materials = 0;
         Materials.find({ title: { $in: req.user.my_materials } }, function (err, mats) {
             for (var i = 0; i < mats.length; i++) {
                 materials.push(mats[i]);
+                number_materials++;
             }
             req.app.locals.materials = materials;
             req.app.locals.material_id = "";
+            req.app.locals.number_materials = number_materials;
             for (var i = 0; i < materials.length; i = i + 3) {
                 chnks[i] = new Array();
                 for (var j = i; j < i + 3; j++) {
@@ -33,6 +35,7 @@ exports.render = function (req, res) {
                     date: req.user.created.toDateString(),
                     materials: req.app.locals.materials,
                     chunks: chnks,
+                    number_materials: req.app.locals.number_materials,
                     img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url
                 }
             );
