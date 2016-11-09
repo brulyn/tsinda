@@ -29,7 +29,7 @@ exports.render = function (req, res) {
                         var chapters_ids = [];
                         for(var i=0; i< chapters_list.length; i++){
                             number_chapters++;
-                            chapters_ids.push(chapters_list[i]._id);
+                            chapters_ids.push(chapters_list._id);
                         }
                         Contents.find({ chapter: {$in: chapters_ids} }).count(function(err, number_contents){
                             res.render(
