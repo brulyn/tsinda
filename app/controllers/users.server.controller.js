@@ -186,15 +186,9 @@ exports.updateMyProfile = function (req, res, next) {
                         if(err){
                             console.log(err);
                         }
-                        var progress = new Prog({
-                            user_id: req.user._id,
-                            user_progress: 0
-                        });
-                        progress.save(function(err, prog){
-                            //console.log("!!!!!!!!!!!!!!!!!" + id_materials);
-                            res.redirect('/');
-                        })
-                        
+
+                        //console.log("!!!!!!!!!!!!!!!!!" + id_materials);
+                        res.redirect('/');
                     }
                 );
             }
@@ -205,11 +199,30 @@ exports.updateMyProfile = function (req, res, next) {
 
 
 exports.renderUpdate = function (req, res, next) {
-    res.render('update', {
-        title: 'Update Profile',
-        user: req.user,
-        date: req.user.created.toDateString(),
-        img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url,
-        messages: req.flash('error')
-    });
+    Prog.findOne({_id: req.user._id},function(err, user){
+        if(!user){
+            var progress = new Prog({
+                user_id: req.user._id,
+                user_progress: 0
+            })
+            progress.save(function(err, user){
+                res.render('update', {
+                    title: 'Update Profile',
+                    user: req.user,
+                    date: req.user.created.toDateString(),
+                    img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url,
+                    messages: req.flash('error')
+                });
+            })
+        }else{
+            res.render('update', {
+                title: 'Update Profile',
+                user: req.user,
+                date: req.user.created.toDateString(),
+                img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url,
+                messages: req.flash('error')
+            });
+        }
+    })
+    
 }
