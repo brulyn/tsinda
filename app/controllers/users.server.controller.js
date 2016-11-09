@@ -2,6 +2,7 @@ var User = require('mongoose').model('User'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     Material = require('mongoose').model('Material'),
+    Prog = require('mongoose').model('Prog'),
     passport = require('passport');
 var getErrorMessage = function (err) {
     var message = '';
@@ -185,8 +186,15 @@ exports.updateMyProfile = function (req, res, next) {
                         if(err){
                             console.log(err);
                         }
-                        //console.log("!!!!!!!!!!!!!!!!!" + id_materials);
-                        res.redirect('/');
+                        var progress = new Prog({
+                            user_id: req.user._id,
+                            user_progress: 0
+                        });
+                        progress.save(function(err, prog){
+                            //console.log("!!!!!!!!!!!!!!!!!" + id_materials);
+                            res.redirect('/');
+                        })
+                        
                     }
                 );
             }
