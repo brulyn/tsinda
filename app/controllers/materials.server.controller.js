@@ -143,12 +143,24 @@ exports.next = function (req, res) {
         var show_back = false;
         var show_next = true;
         req.app.locals.content_index++;
-        Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
-            
-            if (req.app.locals.content_index > 1) {
-                show_back = true;
+        if (req.app.locals.content_index > 1) {
+            show_back = true;
+        }
+        Chapters.find({ material: req.body.material_id }, function (err, chapter) {
+            for (var i = 0; i < chapter.length; i++) {
+                chapters.push(chapter[i]);
             }
-            if (req.app.locals.content_index > contents.length) {
+        });
+        
+        
+        Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
+            Contents.find({ chapter: req.params.id }, function (err, content) {
+                for (var i = 0; i < content.length; i++) {
+                    contents.push(content[i]);
+                }
+            });
+
+            if (req.app.locals.content_index >= contents.length) {
                 show_next = false;
             }
             res.render(
