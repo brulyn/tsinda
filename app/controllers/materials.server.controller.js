@@ -159,7 +159,7 @@ exports.next = function (req, res) {
 
             Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
                 
-                Prog.findOneAndUpdate(
+                Progs.findOneAndUpdate(
                     { user_id: req.user._id},
                     { $set: { user_progress: 10}},
                     function(err, user){
