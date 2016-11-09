@@ -205,6 +205,7 @@ exports.renderUpdate = function (req, res, next) {
                 user_id: req.user._id,
                 user_progress: 0
             })
+            
             progress.save(function(err, user){
                 res.render('update', {
                     title: 'Update Profile',
