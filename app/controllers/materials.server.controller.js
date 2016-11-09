@@ -160,7 +160,7 @@ exports.next = function (req, res) {
                 }
             });
 
-            if (req.app.locals.content_index >= contents.length) {
+            if (req.app.locals.content_index > contents.length) {
                 show_next = false;
             }
             res.render(
