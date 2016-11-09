@@ -151,16 +151,14 @@ exports.next = function (req, res) {
                 chapters.push(chapter[i]);
             }
         });
-        
+        Contents.find({ chapter: req.params.id }, function (err, content) {
+            for (var i = 0; i < content.length; i++) {
+                contents.push(content[i]);
+            }
+        });
         
         Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
-            Contents.find({ chapter: req.params.id }, function (err, content) {
-                for (var i = 0; i < content.length; i++) {
-                    contents.push(content[i]);
-                }
-            });
-
-            if (req.app.locals.content_index > contents.length) {
+            if (req.app.locals.content_index >= contents.length) {
                 show_next = false;
             }
             res.render(
