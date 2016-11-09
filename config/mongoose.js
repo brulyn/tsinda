@@ -9,5 +9,6 @@ module.exports = function () {
     require('../app/models/test');
     require('../app/models/chapter');
     require('../app/models/content');
+    require('../app/models/progress');
     return db;
 };

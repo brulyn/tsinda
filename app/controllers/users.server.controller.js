@@ -115,6 +115,7 @@ exports.myMaterials = function (req, res, next) {
     });
 };
 
+/*
 exports.updateMyProfile1 = function (req, res, next) {
     User.findOne({ username: req.user.username }, function (err, user) {
         var section = req.body.division + req.body.year_studies;
@@ -146,6 +147,7 @@ exports.updateMyProfile1 = function (req, res, next) {
             });
     });
 };
+*/
 
 exports.updateMyProfile = function (req, res, next) {
     var section = req.body.division + req.body.year_studies;
@@ -167,28 +169,26 @@ exports.updateMyProfile = function (req, res, next) {
                 $unset: {my_materials:1}
             },
             function(err, d){
-
-            }
-        );
-
-        User.findOneAndUpdate(
-                {username: req.user.username },
-                {  
-                    $addToSet: {my_materials: {$each: title_materials} },
-                    $set: {
-                        school: req.body.school,
-                        division: req.body.division,
-                        year_studies: req.body.year_studies,
-                        section: section
+                User.findOneAndUpdate(
+                    {username: req.user.username },
+                    {  
+                        $addToSet: {my_materials: {$each: title_materials} },
+                        $set: {
+                            school: req.body.school,
+                            division: req.body.division,
+                            year_studies: req.body.year_studies,
+                            section: section
+                        }
+                    },
+                    { upsert:true },
+                    function(err, affct){
+                        if(err){
+                            console.log(err);
+                        }
+                        //console.log("!!!!!!!!!!!!!!!!!" + id_materials);
+                        res.redirect('/');
                     }
-                },
-                { upsert:true },
-                function(err, affct){
-                    if(err){
-                        console.log(err);
-                    }
-                    console.log("!!!!!!!!!!!!!!!!!" + id_materials);
-                    res.redirect('/');
+                );
             }
         );
     });     
