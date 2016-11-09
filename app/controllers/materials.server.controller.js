@@ -148,7 +148,7 @@ exports.next = function (req, res) {
             if (req.app.locals.content_index > 1) {
                 show_back = true;
             }
-            if (req.app.locals.content_index >= contents.length) {
+            if (req.app.locals.content_index > contents.length) {
                 show_next = false;
             }
             res.render(
