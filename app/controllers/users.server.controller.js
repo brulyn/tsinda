@@ -199,7 +199,7 @@ exports.updateMyProfile = function (req, res, next) {
 
 
 exports.renderUpdate = function (req, res, next) {
-    Prog.find({_id: req.user._id}).count(function(err, number){
+    Prog.find({user_id: req.user._id}).count(function(err, number){
         if(number < 1){
             var progress = new Prog({
                 user_id: req.user.id,
