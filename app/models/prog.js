@@ -8,4 +8,4 @@ var schema = new Schema({
     user_progress: {type:Number, default:0}
 });
 
-module.exports = mongoose.model('Pro', schema);
+module.exports = mongoose.model('Prog', schema);
