@@ -23,7 +23,7 @@ exports.render = function (req, res) {
                     for(var i=0; i<materials_list.length; i++){
                         my_materials_ids.push(materials_list._id);
                     }
-                    Chapters.find( {material_id: {$in: my_materials_ids}}).count(function(err, number_chapters){
+                    Chapters.find( {material_id: {$in: my_materials_ids, done: false}}).count(function(err, number_chapters){
                         req.app.locals.number_chapters = number_chapters;
                         res.render(
                         'index', {
@@ -35,7 +35,7 @@ exports.render = function (req, res) {
                             number_chapters: number_chapters,
                             img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url
                         });
-                    })
+                    });
                     
                 });
                     

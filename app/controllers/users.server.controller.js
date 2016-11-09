@@ -163,7 +163,7 @@ exports.updateMyProfile = function (req, res, next) {
             id_materials.push(my_m[i]._id);
             title_materials.push(my_m[i].title);            
         }
-
+        
         User.update(
             {username: req.user.username},
             {
