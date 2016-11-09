@@ -203,7 +203,7 @@ exports.renderUpdate = function (req, res, next) {
         if(number < 1){
             var progress = new Prog({
                 user_id: req.user.id,
-                user_progress: 0
+                user_progress: number
             });
             progress.save(function(err, done){
                 res.render('update', {
