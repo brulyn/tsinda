@@ -199,23 +199,22 @@ exports.updateMyProfile = function (req, res, next) {
 
 
 exports.renderUpdate = function (req, res, next) {
-    Prog.findOne({_id: req.user._id},function(err, user){
-        if(!user){
+    Prog.find({_id: req.user._id}).count(function(err, number){
+        if(number < 1){
             var progress = new Prog({
-                user_id: req.user._id,
+                user_id: req.user.id,
                 user_progress: 0
-            })
-            
-            progress.save(function(err, user){
+            });
+            progress.save(function(err, done){
                 res.render('update', {
                     title: 'Update Profile',
                     user: req.user,
                     date: req.user.created.toDateString(),
                     img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url,
                     messages: req.flash('error')
-                });
+                });                
             })
-        }else{
+        } else{
             res.render('update', {
                 title: 'Update Profile',
                 user: req.user,
@@ -225,5 +224,11 @@ exports.renderUpdate = function (req, res, next) {
             });
         }
     })
-    
+    res.render('update', {
+        title: 'Update Profile',
+        user: req.user,
+        date: req.user.created.toDateString(),
+        img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url,
+        messages: req.flash('error')
+    });
 }
