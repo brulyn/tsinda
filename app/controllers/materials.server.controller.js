@@ -1,5 +1,6 @@
 var Materials = require('mongoose').model('Material'),
     Contents = require('mongoose').model('Content'),
+    Progs = require('mongoose').model('Prog'),
     Chapters = require('mongoose').model('Chapter'),
     mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
@@ -157,23 +158,33 @@ exports.next = function (req, res) {
             }
 
             Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
-                if (req.app.locals.content_index >= contents.length) {
-                    show_next = false;
-                }
-                res.render(
-                    'content', {
-                        layout: 'read',
-                        title: 'Content',
-                        user: req.user,
-                        date: req.user.created.toDateString(),
-                        chapters: req.app.locals.chapters,
-                        material_id: req.app.locals.material_id,
-                        content: cont,
-                        show_back: show_back,
-                        show_next: show_next,
-                        img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url
+                
+                Prog.findOneAndUpdate(
+                    { user_id: req.user._id},
+                    { $set: { user_progress: 10}},
+                    function(err, user){
+                        if (req.app.locals.content_index >= contents.length) {
+                            show_next = false;
+                        }
+
+                        res.render(
+                            'content', {
+                                layout: 'read',
+                                title: 'Content',
+                                user: req.user,
+                                date: req.user.created.toDateString(),
+                                chapters: req.app.locals.chapters,
+                                material_id: req.app.locals.material_id,
+                                content: cont,
+                                show_back: show_back,
+                                show_next: show_next,
+                                img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url : req.user.providerData.image.url
+                            }
+                        );
                     }
-                );
+                )
+
+                
             });
         });
         
