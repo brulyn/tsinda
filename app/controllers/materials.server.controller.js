@@ -164,6 +164,12 @@ exports.next = function (req, res) {
                     function(err, recent){
                         if (req.app.locals.content_index >= contents.length) {
                             show_next = false;
+                            Contents.findOneAndUpdate(
+                                {content_index: req.app.locals.content_index},
+                                { $push: {done: req.user._id}},
+                                function(err, last){
+                                }
+                            )
                         }
 
                         res.render(
