@@ -166,8 +166,8 @@ exports.next = function (req, res) {
                             show_next = false;
                             Contents.findOneAndUpdate(
                                 {content_index: req.app.locals.content_index},
-                                { $push: {done: req.user._id}},
-                                function(err, last){
+                                { $push: {done: {user_id:req.user._id} } },
+                                function(err, last){ 
                                 }
                             )
                         }
