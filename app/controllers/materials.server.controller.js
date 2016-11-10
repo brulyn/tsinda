@@ -160,13 +160,13 @@ exports.next = function (req, res) {
             Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
                 Contents.findOneAndUpdate(
                     { content_index: req.app.locals.content_index-1}, 
-                    { $addToSet: {done:{user_id:req.user._id } }},
+                    { $addToSet: {done:{_id:req.user._id } }},
                     function(err, recent){
                         if (req.app.locals.content_index >= contents.length) {
                             show_next = false;
                             Contents.findOneAndUpdate(
                                 {content_index: req.app.locals.content_index},
-                                {$addToSet: {done: {user_id: req.user._id}}},
+                                {$addToSet: {done: {_id: req.user._id}}},
                                 function(err, last){ 
                                 }
                             )
