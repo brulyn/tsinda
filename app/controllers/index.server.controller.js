@@ -39,7 +39,7 @@ exports.render = function (req, res) {
                                 date: req.user.created.toDateString(),
                                 number_materials: n,
                                 number_mates: n_us,
-                                number_pages: chapters_list[0].title,
+                                number_pages: number_chapters,
                                 img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url
                             });
                         })
