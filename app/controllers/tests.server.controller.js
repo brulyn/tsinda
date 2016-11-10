@@ -1,3 +1,6 @@
+var Tests = require('mongoose').model('Test'),
+    Users = require('mongoose').model('User');
+
 exports.render = function (req, res) {
     if (req.session.lastVisit) {
         console.log(req.session.lastVisit);
@@ -50,4 +53,10 @@ exports.renderTest = function (req, res) {
             }
         );
     }
+};
+
+exports.renderResults = function(req, res){
+
+    res.send(req.params.answer1);
+
 };
