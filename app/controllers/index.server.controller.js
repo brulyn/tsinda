@@ -24,7 +24,7 @@ exports.render = function (req, res) {
                     for(var i=0; i<materials_list.length; i++){
                         my_materials_ids.push(materials_list[i]._id);
                     }
-                    Chapters.find( {material_id: {$in: my_materials_ids}}, function(err, chapters_list){
+                    Chapters.find( {material: {$in: my_materials_ids}}, function(err, chapters_list){
                         var number_chapters = 0;
                         var chapters_ids = [];
                         for(var i=0; i< chapters_list.length; i++){
