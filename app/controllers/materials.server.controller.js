@@ -166,7 +166,7 @@ exports.next = function (req, res) {
                             show_next = false;
                             Contents.findOneAndUpdate(
                                 {content_index: req.app.locals.content_index},
-                                {$addToSet: {done: req.user._id}},
+                                {$addToSet: {done: req.username}},
                                 function(err, last){ 
                                 }
                             )
