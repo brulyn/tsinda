@@ -8,9 +8,7 @@ var schema = new Schema({
     chapter: {type: Schema.ObjectId},
     body: {type: String},
     content_index: Number,
-    done: [{
-        
-    }]
+    done:{}
 });
 
 module.exports = mongoose.model('Content', schema);
