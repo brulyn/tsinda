@@ -8,7 +8,9 @@ var schema = new Schema({
     chapter: {type: Schema.ObjectId},
     body: {type: String},
     content_index: Number,
-    done: {type: Boolean}
+    done: [{
+        user_id: {type: Schema.ObjectId}
+    }]
 });
 
 module.exports = mongoose.model('Content', schema);
