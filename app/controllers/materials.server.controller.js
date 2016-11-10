@@ -158,11 +158,10 @@ exports.next = function (req, res) {
             }
 
             Contents.findOne({ chapter: req.params.id, content_index: req.app.locals.content_index }, function (err, cont) {
-                
-                Progs.findOneAndUpdate(
-                    { user_id: req.user._id},
-                    { $set: { user_progress: 10}},
-                    function(err, user){
+                Contents.findOneAndUpdate(
+                    { content_index: req.app.locals.content_index-1}, 
+                    { $set: {done: true}},
+                    function(err, recent){
                         if (req.app.locals.content_index >= contents.length) {
                             show_next = false;
                         }
@@ -183,8 +182,6 @@ exports.next = function (req, res) {
                         );
                     }
                 )
-
-                
             });
         });
         
