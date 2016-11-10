@@ -34,7 +34,7 @@ exports.render = function (req, res) {
                         Contents.find({chapter: {$in: chapters_list}}).count(function(err, n_contents){
 
                             Contents.find({ done: {_id: req.user._id} }).count(function(err, number_contents){  
-                                var percent = (Math.round((number_contents/n_contents)*100)/100).toFixed(2);                       
+                                var percent = 100*(Math.round((number_contents/n_contents)*100)/100).toFixed(2);                       
                                 res.render(
                                 'index', {
                                     title: 'Tsinda Platform',
