@@ -31,7 +31,8 @@ exports.render = function (req, res) {
                             number_chapters++;
                             chapters_ids.push(chapters_list[i]._id);
                         }
-                        Contents.find({ chapter: {$in: chapters_ids} }).count(function(err, number_contents){
+                        Contents.find({ done: {_id: req.user._id} }).count(function(err, number_contents){
+                            
                             res.render(
                             'index', {
                                 title: 'Tsinda Platform',
