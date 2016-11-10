@@ -57,6 +57,6 @@ exports.renderTest = function (req, res) {
 
 exports.renderResults = function(req, res){
 
-    res.send(req.params.answer1);
+    res.send(req.body.answer1);
 
 };
