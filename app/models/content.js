@@ -9,7 +9,7 @@ var schema = new Schema({
     body: {type: String},
     content_index: Number,
     done: [{
-        user_id : {}
+        user_id : {tyep: Schema.ObjectId}
     }]
 });
 
