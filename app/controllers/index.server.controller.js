@@ -31,19 +31,24 @@ exports.render = function (req, res) {
                             number_chapters++;
                             chapters_ids.push(chapters_list[i]._id);
                         }
-                        Contents.find({ done: {_id: req.user._id} }).count(function(err, number_contents){
-                            
-                            res.render(
-                            'index', {
-                                title: 'Tsinda Platform',
-                                user: req.user,
-                                date: req.user.created.toDateString(),
-                                number_materials: n,
-                                number_mates: n_us,
-                                number_pages: number_contents,
-                                img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url
+                        Contents.find({chapter: {$in: chapters_list}}).count(function(err, n_contents){
+
+                            Contents.find({ done: {_id: req.user._id} }).count(function(err, number_contents){  
+                                var percent = number_contents/n_contents;                          
+                                res.render(
+                                'index', {
+                                    title: 'Tsinda Platform',
+                                    user: req.user,
+                                    date: req.user.created.toDateString(),
+                                    number_materials: n,
+                                    number_mates: n_us,
+                                    number_pages: number_contents,
+                                    progress: percent,
+                                    img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url
+                                });
                             });
-                        })
+                        });
+                        
                         
                     });
                     
