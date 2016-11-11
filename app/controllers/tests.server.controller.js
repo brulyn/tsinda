@@ -60,12 +60,19 @@ exports.renderResults = function(req, res){
     Tests.findOne({_id: req.params.id},
         function(err, test){
             var saved_answers = [];
+            var submited_answers = [];
             for(var i=0; i< test.answers.length; i++){
                 saved_answers.push(test.answers[i]);
             }
 
-            res.send(req.body.length);
+            for (var key in req.body) {
+                if (req.body.hasOwnProperty(key)) {
+                    item = req.body[key];
+                    submited_answers.push(item);
+                }
+            }
         }
+        res.send(submited_answers);
     )
 
 };
