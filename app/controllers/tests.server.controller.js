@@ -85,7 +85,7 @@ exports.renderResults = function(req, res){
                 }
             }
             res.render(
-                '58246ceedcba0f326cc6aa70',
+                '/58246ceedcba0f326cc6aa70',
                 {
                     title: 'Tests',
                     user: req.user,
