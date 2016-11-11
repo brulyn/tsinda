@@ -74,7 +74,7 @@ exports.renderResults = function(req, res){
             var marks = 0;
             var total = 0;
             var messages = [];
-            for(var i=0; i<submited_answers.length;i++){
+            for(var i=1; i<=submited_answers.length;i++){
                 total++;
                 if(saved_answers[i] === submited_answers[i]){
                     marks++;
