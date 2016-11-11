@@ -59,11 +59,12 @@ exports.renderResults = function(req, res){
 
     Tests.findOne({_id: req.params.id},
         function(err, test){
-            var saved_answers = [];
+            var saved_answers = "";
             for(var i=0; i< test.length; i++){
                 saved_answers.push(test.answer`i`);
             }
-            res.send(saved_answers);
+
+            res.send(test.answer1);
         }
     )
 
