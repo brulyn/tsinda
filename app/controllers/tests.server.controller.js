@@ -57,6 +57,14 @@ exports.renderTest = function (req, res) {
 
 exports.renderResults = function(req, res){
 
-    res.send(req.body.answer1);
+    Tests.findOne({_id: req.params.id},
+        function(err, test){
+            var saved_answers = [];
+            for(var i=0; i< test.length; i++){
+                saved_answers = test.answer`i`;
+            }
+            res.send(saved_answers);
+        }
+    )
 
 };
