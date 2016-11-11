@@ -73,17 +73,28 @@ exports.renderResults = function(req, res){
             }
             var marks = 0;
             var total = 0;
-            var message = "";
+            var messages = [];
             for(var i=0; i<submited_answers.length;i++){
                 total++;
                 if(saved_answers[i] === submited_answers[i]){
                     marks++;
                 }
                 else{
-                    message += "Answer"+i+" should be "+saved_answers[i]+"\nYour answer was "+submited_answers[i]+"\n\n";
+                    var message = "Answer"+i+" should be "+saved_answers[i]+"\nYour answer was "+submited_answers[i]+"\n\n";
+                    messages.push(message);   
                 }
             }
-            res.send("You got "+ ((marks/total)*100).toFixed(2) +" out of "+total +"\n\n"+message);
+            res.render(
+                '58246ceedcba0f326cc6aa70',
+                {
+                    title: 'Tests',
+                    user: req.user,
+                    date: req.user.created.toDateString(),
+                    img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url,
+                    messages: messages,
+                    marks: marks
+                }
+            )
         }
     )
 };
