@@ -85,6 +85,7 @@ exports.renderResults = function(req, res){
                     messages.push(message);   
                 }
             }
+            var perc = ((marks/total)*100).toFixed(2);
             res.render(
                 'tests/58246ceedcba0f326cc6aa70',
                 {
@@ -93,7 +94,7 @@ exports.renderResults = function(req, res){
                     date: req.user.created.toDateString(),
                     img_url: (req.user.provider == 'facebook') ? req.user.providerData.picture.data.url :req.user.providerData.image.url,
                     messages: messages,
-                    marks: marks
+                    marks: perc
                 }
             )
         }
