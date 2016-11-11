@@ -1,15 +1,19 @@
 <section class="content">
 
-    <div class="list-group text-center">
-        {{ marks }}
-    </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-    {{#each messages}}
-        <div class="alert alert-danger" role="alert">
-            {{ this }}
+    <div class="container"> 
+        
+        <div class="alert alert-info" role="alert">
+            {{ marks }}
         </div>
-    {{/each}}
+        
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        {{#each messages}}
+            <div class="alert alert-danger" role="alert">
+                {{ this }}
+            </div>
+        {{/each}}
+        </div>
     </div>
 
 </section>
