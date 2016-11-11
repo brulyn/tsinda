@@ -71,8 +71,7 @@ exports.renderResults = function(req, res){
                     submited_answers.push(item);
                 }
             }
+            res.send(submited_answers);
         }
-        res.send(submited_answers);
     )
-
 };
