@@ -80,7 +80,7 @@ exports.renderResults = function(req, res){
                     marks++;
                 }
                 else{
-                    var message = "Answer"+i+" should be "+saved_answers[i]+"\nYour answer was "+submited_answers[i]+"\n\n";
+                    var message = "Answer"+i+" should be "+saved_answers[i]+"<br>Your answer was "+submited_answers[i];
                     messages.push(message);   
                 }
             }
