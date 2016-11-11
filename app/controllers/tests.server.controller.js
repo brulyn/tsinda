@@ -71,7 +71,19 @@ exports.renderResults = function(req, res){
                     submited_answers.push(item);
                 }
             }
-            res.send(submited_answers);
+            var marks = 0;
+            var total = 0;
+            var message = "";
+            for(var i=0; i<submited_answers.length;i++){
+                total++;
+                if(saved_answers[i] === submited_answers[i]){
+                    marks++;
+                }
+                else{
+                    message += "Answer"+i+" should be "+saved_answers[i]+"\nYour answer was "+submited_answers[i]+"\n\n";
+                }
+            }
+            res.send("You got "+marks+" out of "+total +"\n\n"+message);
         }
     )
 };
