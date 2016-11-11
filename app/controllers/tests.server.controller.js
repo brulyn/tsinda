@@ -83,7 +83,7 @@ exports.renderResults = function(req, res){
                     message += "Answer"+i+" should be "+saved_answers[i]+"\nYour answer was "+submited_answers[i]+"\n\n";
                 }
             }
-            res.send("You got "+ (marks/total)*100 +" out of "+total +"\n\n"+message);
+            res.send("You got "+ ((marks/total)*100).toFixed(2) +" out of "+total +"\n\n"+message);
         }
     )
 };
