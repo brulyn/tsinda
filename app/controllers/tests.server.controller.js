@@ -74,13 +74,13 @@ exports.renderResults = function(req, res){
             var marks = 0;
             var total = 0;
             var messages = [];
-            for(var i=1; i<=submited_answers.length;i++){
+            for(var i=0; i<submited_answers.length;i++){
                 total++;
                 if(saved_answers[i] === submited_answers[i]){
                     marks++;
                 }
                 else{
-                    var message = 'Answer '+i+' should be "'+saved_answers[i]+
+                    var message = 'Answer '+(i+1)+' should be "'+saved_answers[i]+
                     '"\n Your answer was "'+submited_answers[i]+'"';
                     messages.push(message);   
                 }
