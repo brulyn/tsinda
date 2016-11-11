@@ -64,7 +64,7 @@ exports.renderResults = function(req, res){
                 saved_answers.push(test.answers[i]);
             }
 
-            res.send(test.answers[0]);
+            res.send(saved_answers);
         }
     )
 
