@@ -5,16 +5,16 @@ module.exports = {
     facebook: {
         clientID: '597390973774147',
         clientSecret: 'ba964a455812afb6aa16355dfc28bb94',
-        callbackURL: 'https://tsinda.herokuapp.com/oauth/facebook/callback'
+        callbackURL: 'https://tsindapl.herokuapp.com/oauth/facebook/callback'
     },
     twitter: {
         clientID: '0dIQk2MmTibxz4rfg9XeKCUMV',
         clientSecret: 'xrKtEYrA9nD8asPx2wdQMHHv0B4BKxo1Y3BQZxQ503t0p9XZvt',
-        callbackURL: 'https://tsinda.herokuapp.com/oauth/twitter/callback'
+        callbackURL: 'https://tsindapl.herokuapp.com/oauth/twitter/callback'
     },
     google: {
         clientID: '233128968140-ek747mssubdjaito1nrsk03jl4imou7r.apps.googleusercontent.com',
         clientSecret: 'WrKiBpu3KcmClKRU3DWwz5NU',
-        callbackURL: 'https://tsinda.herokuapp.com/oauth/google/callback'
+        callbackURL: 'https://tsindapl.herokuapp.com/oauth/google/callback'
     }
 };
