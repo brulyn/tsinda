@@ -13,8 +13,8 @@ module.exports = {
         callbackURL: 'https://tsinda.herokuapp.com/oauth/twitter/callback'
     },
     google: {
-        clientID: '713030075396-770egl80kfdev00hffoguvkpn90u6eld.apps.googleusercontent.com',
-        clientSecret: 'RgTKwUzOP3h90yeIIOCRQ-mf',
+        clientID: '233128968140-ek747mssubdjaito1nrsk03jl4imou7r.apps.googleusercontent.com',
+        clientSecret: 'WrKiBpu3KcmClKRU3DWwz5NU',
         callbackURL: 'https://tsinda.herokuapp.com/oauth/google/callback'
     }
 };

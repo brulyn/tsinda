@@ -11,4 +11,4 @@ var passport = passport();
 app.listen(process.env.PORT || 5000);
 module.exports = app;
 
-console.log('Server running at http://localhost:3000/');
+console.log('Server running at http://localhost:5000/');

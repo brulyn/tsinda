@@ -13,8 +13,8 @@ module.exports = {
         callbackURL: 'http://localhost:3000/oauth/twitter/callback'
     },
     google: {
-        clientID: '578665604715-m4mhcl3msccjlhc9eabhovgvqpov022g.apps.googleusercontent.com',
-        clientSecret: 'UgIq5y85nDdyIAsIhW3V8bAd',
-        callbackURL: 'http://localhost:3000/oauth/google/callback'
+        clientID: '233128968140-ek747mssubdjaito1nrsk03jl4imou7r.apps.googleusercontent.com',
+        clientSecret: 'WrKiBpu3KcmClKRU3DWwz5NU',
+        callbackURL: 'http://localhost:5000/oauth/google/callback'
     }
 };
